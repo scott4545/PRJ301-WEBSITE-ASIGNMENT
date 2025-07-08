@@ -41,16 +41,11 @@ public class MainController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             System.out.println("Processing action: " + action + ", URI: " + request.getRequestURI());
-            if (action == null) {
-                url = HOME_PAGE;
-            } else if (isUserAction(action)) {
+             if (isUserAction(action)) {
                 url = "/UserController";
             } else if (isProductAction(action)) {
                 url = "/ProductController";
-            } else {
-                request.setAttribute("ERROR", "Invalid action!");
-                url = HOME_PAGE;
-            }
+            } 
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("ERROR", "An error occurred: " + e.getMessage());

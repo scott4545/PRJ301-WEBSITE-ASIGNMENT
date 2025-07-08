@@ -30,7 +30,6 @@ import model.ReviewDTO;
 public class ProductController extends HttpServlet {
 
     private static final String PRODUCTS_PAGE = "/products.jsp";
-    private static final String SEARCH_PAGE = "/search.jsp";
     private static final String PRODUCT_DETAIL_PAGE = "/productDetail.jsp";
     private static final String ERROR_PAGE = "/error.jsp";
 
@@ -39,14 +38,7 @@ public class ProductController extends HttpServlet {
     private final BrandDAO brandDAO = new BrandDAO();
     private final ReviewDAO reviewDAO = new ReviewDAO();
 
-    /**
-     * Processes both GET and POST requests for product-related actions.
-     *
-     * @param request the HttpServletRequest object
-     * @param response the HttpServletResponse object
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -71,52 +63,26 @@ public class ProductController extends HttpServlet {
         }
     }
 
-    /**
-     * Handles GET requests by delegating to processRequest.
-     *
-     * @param request the HttpServletRequest object
-     * @param response the HttpServletResponse object
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles POST requests by delegating to processRequest.
-     *
-     * @param request the HttpServletRequest object
-     * @param response the HttpServletResponse object
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Provides a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Handles product-related operations including listing, searching, and viewing details.";
     }
 
-    /**
-     * Handles the listing of products with optional filtering by category,
-     * brand, and price range.
-     *
-     * @param request the HttpServletRequest object
-     * @param response the HttpServletResponse object
-     * @return the URL to forward to
-     */
+
     private String handleProductListing(HttpServletRequest request, HttpServletResponse response) {
         String categoryId = request.getParameter("categoryId");
         String brandId = request.getParameter("brandId");
@@ -157,7 +123,7 @@ public class ProductController extends HttpServlet {
         request.setAttribute("BRANDS", brands);
         request.setAttribute("SUGGESTIONS", suggestions);
         request.setAttribute("QUERY", query);
-        return SEARCH_PAGE;
+        return PRODUCTS_PAGE;
     }
 
     /**

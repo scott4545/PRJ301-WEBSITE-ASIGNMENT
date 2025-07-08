@@ -19,7 +19,7 @@ public class AuthUtils {
 
 
     public static UserDTO getCurrentUser(HttpServletRequest request) {
-        HttpSession session = request.getSession(false); 
+        HttpSession session = request.getSession(false); // Use false to avoid creating a new session
         if (session != null) {
             return (UserDTO) session.getAttribute("user");
         }

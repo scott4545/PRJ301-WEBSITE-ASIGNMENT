@@ -47,4 +47,6 @@ public class UserDTO {
     public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
+
+   
 }
