@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/search.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/changePassword.css</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/editProfile.css</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/UserDTO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/addProduct.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/utils/DbUtils.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/orderTracking.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/OrderDTO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/CategoryDTO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/utils/AuthUtils.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/index.html</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/error.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/login.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/editProfile.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/controller/MainController.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/orderForm.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/home.css</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/productDetail.css</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/login.css</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/controller/ProductController.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/controller/UserController.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/register.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/BrandDTO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/productDetail.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/js/home.js</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/ProductDAO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/BrandDAO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/js/register.js</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/changePassword.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/products.css</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/js/login.js</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/ProductDTO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/ReviewDAO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/OrderDAO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/orderTracking.css</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/ReviewDTO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/products.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/home.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/CategoryDAO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/search.css</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/src/java/model/UserDAO.java</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/addProduct.css</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/orderSuccess.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/PRJ301/Ex/scott4545/web/css/register.css</file>
+        </group>
+    </open-files>
+</project-private>
