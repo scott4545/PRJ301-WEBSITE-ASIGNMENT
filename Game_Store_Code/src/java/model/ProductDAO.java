@@ -96,63 +96,62 @@ public class ProductDAO {
      * @return a list of ProductDTO objects matching the search criteria
      */
     public List<ProductDTO> searchProducts(String query, String categoryId, String brandId, String minPrice, String maxPrice) {
-    List<ProductDTO> products = new ArrayList<>();
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+        List<ProductDTO> products = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-    try {
-        conn = DbUtils.getConnection();
-        String sql = "SELECT * FROM Product WHERE 1=1";
-        if (query != null && !query.trim().isEmpty()) {
-            sql += " AND ProductName LIKE ?";
-        }
-        if (categoryId != null && !categoryId.isEmpty()) {
-            sql += " AND CategoryID = ?";
-        }
-        if (brandId != null && !brandId.isEmpty()) {
-            sql += " AND BrandID = ?";
-        }
-        if (minPrice != null && !minPrice.isEmpty()) {
-            sql += " AND ProductPrice >= ?";
-        }
-        if (maxPrice != null && !maxPrice.isEmpty()) {
-            sql += " AND ProductPrice <= ?";
-        }
+        try {
+            conn = DbUtils.getConnection();
+            StringBuilder sql = new StringBuilder(SEARCH_PRODUCTS);
+            List<Object> params = new ArrayList<>();
 
-        ps = conn.prepareStatement(sql);
-        int paramIndex = 1;
-        if (query != null && !query.trim().isEmpty()) {
-            ps.setString(paramIndex++, "%" + query + "%");
-        }
-        if (categoryId != null && !categoryId.isEmpty()) {
-            ps.setString(paramIndex++, categoryId);
-        }
-        if (brandId != null && !brandId.isEmpty()) {
-            ps.setString(paramIndex++, brandId);
-        }
-        if (minPrice != null && !minPrice.isEmpty()) {
-            ps.setDouble(paramIndex++, Double.parseDouble(minPrice));
-        }
-        if (maxPrice != null && !maxPrice.isEmpty()) {
-            ps.setDouble(paramIndex++, Double.parseDouble(maxPrice));
-        }
+            if (query != null && !query.trim().isEmpty()) {
+                sql.append(" AND ProductName LIKE ?");
+                params.add("%" + query + "%");
+            }
+            if (categoryId != null && !categoryId.isEmpty()) {
+                sql.append(" AND CategoryID = ?");
+                params.add(Integer.parseInt(categoryId));
+            }
+            if (brandId != null && !brandId.isEmpty()) {
+                sql.append(" AND BrandID = ?");
+                params.add(Integer.parseInt(brandId));
+            }
+            if (minPrice != null && !minPrice.isEmpty()) {
+                sql.append(" AND ProductPrice >= ?");
+                params.add(Double.parseDouble(minPrice));
+            }
+            if (maxPrice != null && !maxPrice.isEmpty()) {
+                sql.append(" AND ProductPrice <= ?");
+                params.add(Double.parseDouble(maxPrice));
+            }
 
-        rs = ps.executeQuery();
-        while (rs.next()) {
-            ProductDTO product = new ProductDTO();
-            product.setProductId(rs.getInt("ProductID"));
-            product.setProductName(rs.getString("ProductName"));
-            product.setProductPrice(rs.getDouble("ProductPrice"));
-            products.add(product);
+            ps = conn.prepareStatement(sql.toString());
+            for (int i = 0; i < params.size(); i++) {
+                ps.setObject(i + 1, params.get(i));
+            }
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ProductDTO product = new ProductDTO();
+                product.setProductId(rs.getInt("ProductID"));
+                product.setProductName(rs.getString("ProductName"));
+                product.setProductDescription(rs.getString("ProductDescription"));
+                product.setProductPrice(rs.getDouble("ProductPrice"));
+                product.setProductImage(rs.getString("ProductImage"));
+                product.setCategoryId(rs.getInt("CategoryID"));
+                product.setBrandId(rs.getInt("BrandID"));
+                products.add(product);
+            }
+        } catch (Exception e) {
+            System.err.println("Error in searchProducts(): " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            closeResource(conn, ps, rs);
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-    } finally {
-        // Đóng kết nối
+        return products;
     }
-    return products;
-}
 
     /**
      * Retrieves search suggestions for product names based on a query.

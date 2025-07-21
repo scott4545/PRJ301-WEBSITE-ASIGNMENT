@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.ProductDTO, model.ReviewDTO, java.util.List, java.text.NumberFormat, java.util.Locale"%>
+<%@page import="model.ProductDTO, model.ReviewDTO, java.util.List, java.text.NumberFormat, java.util.Locale, model.UserDTO"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +14,7 @@
     <div class="container">
         <%
             ProductDTO product = (ProductDTO) request.getAttribute("PRODUCT");
+            UserDTO user = (UserDTO) session.getAttribute("USER");
             NumberFormat formatter = NumberFormat.getInstance(new Locale("vi", "VN"));
             if (product != null) {
         %>
@@ -25,7 +26,25 @@
             </a>
             <span class="breadcrumb-separator">/</span>
             <span class="breadcrumb-current"><%= product.getProductName() %></span>
+            <% if (user != null) { %>
+                <a href="MainController?action=trackOrder" class="breadcrumb-link track-order">
+                    <i class="fas fa-shipping-fast"></i> Track Orders
+                </a>
+            <% } %>
         </nav>
+
+        <!-- Success/Error Message -->
+        <% if (request.getAttribute("SUCCESS") != null) { %>
+            <div class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <p><%= request.getAttribute("SUCCESS") %></p>
+            </div>
+        <% } else if (request.getAttribute("ERROR") != null) { %>
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p><%= request.getAttribute("ERROR") %></p>
+            </div>
+        <% } %>
 
         <!-- Product Header -->
         <div class="product-header">
@@ -54,12 +73,22 @@
                     <p><%= product.getProductDescription() != null ? product.getProductDescription() : "No description available." %></p>
                 </div>
 
+                <!-- Order Button -->
+                <% if (user != null) { %>
+                    <div class="order-button">
+                        <a href="MainController?action=placeOrder&productId=<%= product.getProductId() %>" class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i>
+                            Place Order
+                        </a>
+                    </div>
+                <% } else { %>
+                    <div class="login-prompt">
+                        <p>Please <a href="login.jsp">log in</a> to place an order.</p>
+                    </div>
+                <% } %>
+
                 <div class="product-actions">
-                    <button class="btn btn-primary">
-                        <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
-                    </button>
-                    <button class="btn btn-secondary">
+                    <button class="btn btn-secondary" onclick="addToWishlist(<%= product.getProductId() %>)">
                         <i class="fas fa-heart"></i>
                         Add to Wishlist
                     </button>
@@ -86,8 +115,39 @@
         <div class="reviews-section">
             <div class="section-header">
                 <h2>Customer Reviews</h2>
-                <button class="btn btn-outline">Write a Review</button>
+                <% if (user != null) { %>
+                    <button class="btn btn-outline" onclick="toggleReviewForm()">Write a Review</button>
+                <% } %>
             </div>
+
+            <!-- Review Form -->
+            <% if (user != null) { %>
+                <div class="review-form" id="reviewForm" style="display: none;">
+                    <h3>Write Your Review</h3>
+                    <form action="MainController" method="POST">
+                        <input type="hidden" name="action" value="addReview">
+                        <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+                        <div class="form-group">
+                            <label for="rating">Rating:</label>
+                            <select id="rating" name="rating" required>
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="5">5 Stars</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea id="comment" name="comment" rows="4" placeholder="Write your review here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Review
+                        </button>
+                    </form>
+                </div>
+            <% } %>
 
             <div class="reviews-container">
                 <%
@@ -133,7 +193,11 @@
                     <i class="fas fa-comments"></i>
                     <h3>No Reviews Yet</h3>
                     <p>Be the first to review this product!</p>
-                    <button class="btn btn-primary">Write First Review</button>
+                    <% if (user != null) { %>
+                        <button class="btn btn-primary" onclick="toggleReviewForm()">Write First Review</button>
+                    <% } else { %>
+                        <p>Please <a href="login.jsp">log in</a> to write a review.</p>
+                    <% } %>
                 </div>
                 <% } %>
             </div>
@@ -155,9 +219,8 @@
     </div>
 
     <script>
-        // Add some interactive effects
+        // Smooth hover effects for buttons
         document.addEventListener('DOMContentLoaded', function() {
-            // Smooth hover effects for buttons
             const buttons = document.querySelectorAll('.btn');
             buttons.forEach(button => {
                 button.addEventListener('mouseenter', function() {
@@ -168,6 +231,18 @@
                 });
             });
         });
+
+        // Toggle review form visibility
+        function toggleReviewForm() {
+            const reviewForm = document.getElementById('reviewForm');
+            reviewForm.style.display = reviewForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add to wishlist functionality
+        function addToWishlist(productId) {
+            console.log('Adding product to wishlist:', productId);
+            // Implement AJAX call for wishlist functionality if needed
+        }
     </script>
 </body>
 </html>

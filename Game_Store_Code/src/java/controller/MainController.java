@@ -1,5 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click //nbfs://SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click //nbproject//Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller;
@@ -19,7 +19,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
     private static final String HOME_PAGE = "/home.jsp";
    
-
     private boolean isUserAction(String action) {
         return "login".equals(action)
                 || "register".equals(action)
@@ -31,7 +30,11 @@ public class MainController extends HttpServlet {
     private boolean isProductAction(String action) {
         return "listProducts".equals(action)
                 || "search".equals(action)
-                || "productDetail".equals(action);
+                || "productDetail".equals(action)
+                || "placeOrder".equals(action)
+                || "confirmOrder".equals(action)
+                || "trackOrder".equals(action)
+                || "addReview".equals(action);
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,7 +44,7 @@ public class MainController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             System.out.println("Processing action: " + action + ", URI: " + request.getRequestURI());
-             if (isUserAction(action)) {
+            if (isUserAction(action)) {
                 url = "/UserController";
             } else if (isProductAction(action)) {
                 url = "/ProductController";

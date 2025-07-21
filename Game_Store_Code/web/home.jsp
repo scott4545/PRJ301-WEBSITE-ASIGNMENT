@@ -30,7 +30,7 @@
                     UserDTO user = (UserDTO) session.getAttribute("USER");
                     if (user != null) {
                 %>
-                    <a href="MainController?action=myOrders" class="nav-link">My Orders</a>
+                    <a href="MainController?action=trackOrder" class="nav-link">My Orders</a>
                 <% } %>
             </nav>
 
